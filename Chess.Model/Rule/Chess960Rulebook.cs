@@ -19,7 +19,7 @@ namespace Chess.Model.Rule
     /// <summary>
     /// Represents the standard chess rulebook.
     /// </summary>
-    public class Chess960BookRulebook : IRulebook
+    public class Chess960Rulebook : IRulebook
     {
         /// <summary>
         /// Represents the check rule of a standard chess game.
@@ -59,14 +59,14 @@ namespace Chess.Model.Rule
         {
             IEnumerable<PlacedPiece> makeBaseLine(int row, Color color)
             {
-                yield return new PlacedPiece(new Position(row, 0), new Rook(color));
-                yield return new PlacedPiece(new Position(row, 1), new Knight(color));
-                yield return new PlacedPiece(new Position(row, 2), new Bishop(color));
-                yield return new PlacedPiece(new Position(row, 3), new Queen(color));
-                yield return new PlacedPiece(new Position(row, 4), new King(color));
-                yield return new PlacedPiece(new Position(row, 5), new Bishop(color));
-                yield return new PlacedPiece(new Position(row, 6), new Knight(color));
-                yield return new PlacedPiece(new Position(row, 7), new Rook(color));
+                yield return new PlacedPiece(new Position(row, 8, "Chess960Rulebook"), new Rook(color));
+                yield return new PlacedPiece(new Position(row, 7, "Chess960Rulebook"), new Knight(color));
+                yield return new PlacedPiece(new Position(row, 6, "Chess960Rulebook"), new Bishop(color));
+                yield return new PlacedPiece(new Position(row, 5, "Chess960Rulebook"), new Queen(color));
+                yield return new PlacedPiece(new Position(row, 4, "Chess960Rulebook"), new King(color));
+                yield return new PlacedPiece(new Position(row, 3, "Chess960Rulebook"), new Bishop(color));
+                yield return new PlacedPiece(new Position(row, 2, "Chess960Rulebook"), new Knight(color));
+                yield return new PlacedPiece(new Position(row, 1, "Chess960Rulebook"), new Rook(color));
             }
 
             IEnumerable<PlacedPiece> makePawns(int row, Color color) =>
@@ -130,13 +130,6 @@ namespace Chess.Model.Rule
             );
 
             return updates.GetOrElse(Enumerable.Empty<Update>());
-        }
-
-        public Position RandomPostion(int row, int max)
-        {
-            Random random = new Random();
-            var newPos = new Position(row, random.Next());
-            return newPos;
         }
     }
 }
