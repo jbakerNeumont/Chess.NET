@@ -63,7 +63,7 @@ namespace Chess.Model.Rule
                 var availableCols = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7 };
                 var p1 = new Position(row, DerivationValues["b1"], "bishopOdd", availableCols);
 				if (availableCols.Contains(p1.Column)) { availableCols.Remove(p1.Column); }
-                var p2 = new Position(row, DerivationValues["b1"], "bishopEven", availableCols);
+                var p2 = new Position(row, DerivationValues["b2"], "bishopEven", availableCols);
                 if (availableCols.Contains(p2.Column)) { availableCols.Remove(p2.Column); }
                 var p3 = new Position(row, DerivationValues["q"], "queen", availableCols);
                 if (availableCols.Contains(p3.Column)) { availableCols.Remove(p3.Column); }
