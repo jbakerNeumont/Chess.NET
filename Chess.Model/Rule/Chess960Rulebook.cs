@@ -164,7 +164,7 @@ namespace Chess.Model.Rule
             var n3 = (n2 - b2) / 4;
             var q = (n3 % 6);
             result.Add("q", q);
-            var n4 = (n3 % 6) / 6;
+            var n4 = (n3 - q) / 6;
             result.Add("n4", n4);
             return result;
 		}
