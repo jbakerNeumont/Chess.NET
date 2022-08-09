@@ -27,7 +27,7 @@ namespace Chess.Model.Rule
         private readonly MovementRule movementRule;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StandardRulebook"/> class.
+        /// Initializes a new instance of the <see cref="Chess960Rulebook"/> class.
         /// </summary>
         public Chess960Rulebook()
         {
@@ -40,7 +40,6 @@ namespace Chess.Model.Rule
             this.movementRule = new MovementRule(castlingRule, enPassantRule, promotionRule, threatAnalyzer);
             this.endRule = new EndRule(this.checkRule, this.movementRule);
         }
-
         /// <summary>
         /// Creates a new chess game according to the standard rulebook.
         /// </summary>
