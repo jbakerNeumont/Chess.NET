@@ -1,18 +1,28 @@
-﻿using Chess.Model.Command;
-using Chess.Model.Data;
-using Chess.Model.Game;
-using Chess.Model.Piece;
-using Chess.Model.Visitor;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="StandardRulebook.cs">
+//     Copyright (c) Michael Szvetits. All rights reserved.
+// </copyright>
+// <author>Michael Szvetits</author>
+//-----------------------------------------------------------------------
 namespace Chess.Model.Rule
 {
-    public class Chess960Rulebook : IRulebook
+    using Chess.Model.Command;
+    using Chess.Model.Data;
+    using Chess.Model.Game;
+    using Chess.Model.Piece;
+    using Chess.Model.Visitor;
+	using System;
+	using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Linq;
+
+    /// <summary>
+    /// Represents the standard chess rulebook.
+    /// </summary>
+    public class Chess960BookRulebook : IRulebook
     {
         /// <summary>
-        /// Represents the check rule for chess 960
+        /// Represents the check rule of a standard chess game.
         /// </summary>
         private readonly CheckRule checkRule;
 
@@ -27,7 +37,7 @@ namespace Chess.Model.Rule
         private readonly MovementRule movementRule;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Chess960Rulebook"/> class.
+        /// Initializes a new instance of the <see cref="StandardRulebook"/> class.
         /// </summary>
         public Chess960Rulebook()
         {
@@ -40,6 +50,7 @@ namespace Chess.Model.Rule
             this.movementRule = new MovementRule(castlingRule, enPassantRule, promotionRule, threatAnalyzer);
             this.endRule = new EndRule(this.checkRule, this.movementRule);
         }
+
         /// <summary>
         /// Creates a new chess game according to the standard rulebook.
         /// </summary>
@@ -119,6 +130,13 @@ namespace Chess.Model.Rule
             );
 
             return updates.GetOrElse(Enumerable.Empty<Update>());
+        }
+
+        public Position RandomPostion(int row, int max)
+        {
+            Random random = new Random();
+            var newPos = new Position(row, random.Next());
+            return newPos;
         }
     }
 }
