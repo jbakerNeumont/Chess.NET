@@ -8,12 +8,18 @@
         WindowStartupLocation="CenterScreen"
         Background="DarkGray" Icon="/Icon/appIcon.png"
         Title="Chess.NET" Height="700" Width="700">
-    <DockPanel HorizontalAlignment="Center" LastChildFill="False">
-        <Button x:Name="regular" Height="75" Width="200" Margin="10" FontSize="25" FontWeight="Bold" Click="selectorClick">
-            Regular Chess
-        </Button>
-        <Button x:Name="ninesixty" Height="75" Width="200" Margin="10" FontSize="25" FontWeight="Bold" Click="selectorClick">
-            960 Chess
-        </Button>
-    </DockPanel>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label HorizontalContentAlignment="Center" Content="Welcome to Chess.NET!" FontSize="40"/>
+        <Label HorizontalContentAlignment="Center" Content="Select a game mode to get started." FontSize="20" Padding="15"/>
+        <Border BorderBrush="Black" BorderThickness="2" >
+            <WrapPanel>
+                <Button x:Name="regular" Height="75" Width="200" Margin="10" FontSize="25" FontWeight="Bold" Click="selectorClick">
+                    Regular Chess
+                </Button>
+                <Button x:Name="ninesixty" Height="75" Width="200" Margin="10" FontSize="25" FontWeight="Bold" Click="selectorClick">
+                    960 Chess
+                </Button>
+            </WrapPanel>
+        </Border>
+    </StackPanel>
 </Window>

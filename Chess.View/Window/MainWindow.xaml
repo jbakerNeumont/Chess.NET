@@ -40,7 +40,7 @@
                 <Separator />
                 <MenuItem Header="Return" Click="ReturnClick">
                     <MenuItem.Icon>
-                        <icon:UndoIcon />
+                        <icon:ReturnIcon/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Exit" Click="ExitClick">
