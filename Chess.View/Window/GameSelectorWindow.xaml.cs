@@ -21,7 +21,7 @@
 
         /// <summary>
         /// Dependent on the name of the button that was chosen
-        /// go to main window using the corseponding constructor
+        /// navigate to main window using the corseponding constructor
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">Additional information about the event.</param>
@@ -33,19 +33,17 @@
                 case "regular":
                     MainWindow regular = new MainWindow();
                     regular.Show();
-                    this.Close();
                     break;
                 case "ninesixty":
                     MainWindow nineSixty = new MainWindow();
                     nineSixty.Show();
-                    this.Close();
                     break;
                 default:
                     MainWindow defaultWindow = new MainWindow();
                     defaultWindow.Show();
-                    this.Close();
                     break;
             }
+            this.Close();
         }
     }
 }
