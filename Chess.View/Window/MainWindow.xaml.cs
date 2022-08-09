@@ -23,6 +23,7 @@ namespace Chess.View.Window
         /// <summary>
         /// Represents the view model of the window.
         /// </summary>
+        //private readonly ChessGame960VM game;
         private readonly ChessGameVM game;
 
         /// <summary>
@@ -37,6 +38,7 @@ namespace Chess.View.Window
         {
             this.InitializeComponent();
             this.game = new ChessGameVM(this.Choose);
+            //this.game = new ChessGame960VM(this.Choose);
             this.promotionSelector = new PromotionSelector();
             this.DataContext = this.game;
         }
