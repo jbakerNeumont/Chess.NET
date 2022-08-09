@@ -79,7 +79,7 @@ namespace Chess.Model.Game
                     }
                     break;
                 case ("queen"):
-                    this.Column = availableCols[0];
+                    this.Column = availableCols[derVal];
                     break;
                 case ("knight1"):
 					switch (derVal)
@@ -151,8 +151,11 @@ namespace Chess.Model.Game
                             break;
                     }
                     break;
-                case ("rook"):
+                case ("rook1"):
                     this.Column = availableCols[0];
+                    break;
+                case ("rook2"):
+                    this.Column = availableCols[^1];
                     break;
                 case ("king"):
                     this.Column = availableCols[0];
