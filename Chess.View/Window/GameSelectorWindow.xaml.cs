@@ -35,11 +35,11 @@
                     regular.Show();
                     break;
                 case "ninesixty":
-                    MainWindow nineSixty = new MainWindow();
+                    MainWindow nineSixty = new MainWindow("960VM");
                     nineSixty.Show();
                     break;
                 default:
-                    MainWindow defaultWindow = new MainWindow();
+                    MainWindow defaultWindow = new MainWindow("default");
                     defaultWindow.Show();
                     break;
             }

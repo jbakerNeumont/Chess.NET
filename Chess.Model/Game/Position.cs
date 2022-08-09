@@ -8,11 +8,12 @@ namespace Chess.Model.Game
 {
     using Chess.Model.Data;
     using System;
+	using System.Collections.Generic;
 
-    /// <summary>
-    /// Represents a position on a chess board.
-    /// </summary>
-    public class Position : IEquatable<Position>
+	/// <summary>
+	/// Represents a position on a chess board.
+	/// </summary>
+	public class Position : IEquatable<Position>
     {
         /// <summary>
         /// Represents the row of the position, where 0 represents the bottom row.
@@ -36,6 +37,90 @@ namespace Chess.Model.Game
 
             this.Row = row;
             this.Column = column;
+        }
+
+        public Position(int row, int derVal, string pieceName, List<int> availableCols)
+		{
+            this.Row = row;
+			switch (pieceName)
+			{
+                case ("bishopOdd"):
+					switch (derVal)
+					{
+                        case 0:
+                            this.Column = 1;
+                            break;
+                        case 1:
+                            this.Column = 3;
+                            break;
+                        case 2:
+                            this.Column = 5;
+                            break;
+                        case 3:
+                            this.Column = 7;
+                            break;
+                    }
+                    break;
+                case ("bishopEven"):
+                    switch (derVal)
+                    {
+                        case 0:
+                            this.Column = 0;
+                            break;
+                        case 1:
+                            this.Column = 2;
+                            break;
+                        case 2:
+                            this.Column = 4;
+                            break;
+                        case 3:
+                            this.Column = 6;
+                            break;
+                    }
+                    break;
+                case ("queen"):
+                    this.Column = availableCols[0];
+                    break;
+                case ("knight1"):
+					switch (derVal)
+					{
+                        case 0:
+                            this.Column = availableCols[0];
+                            break;
+                        case 1:
+                            this.Column = availableCols[0];
+                            break;
+                        case 2:
+                            this.Column = availableCols[0];
+                            break;
+                        case 3:
+                            this.Column = availableCols[0];
+                            break;
+                        case 4:
+                            this.Column = availableCols[1];
+                            break;
+                        case 5:
+                            this.Column = availableCols[1];
+                            break;
+                        case 6:
+                            this.Column = availableCols[1];
+                            break;
+                        case 7:
+                            break;
+                        case 8:
+                            break;
+                        case 9:
+                            break;
+                    }
+                    break;
+                case ("rook"):
+                    this.Column = availableCols[0];
+                    break;
+                case ("king"):
+                    this.Column = availableCols[0];
+                    break;
+            }
+
         }
 
         /// <summary>

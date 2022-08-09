@@ -1,12 +1,11 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="ChessGameVM.cs">
-//     Copyright (c) Michael Szvetits. All rights reserved.
-// </copyright>
-// <author>Michael Szvetits</author>
-//-----------------------------------------------------------------------
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Chess.ViewModel.Game
-{
-    using Chess.Model.Command;
+{ using Chess.Model.Command;
     using Chess.Model.Game;
     using Chess.Model.Rule;
     using Chess.ViewModel.Command;
@@ -14,12 +13,12 @@ namespace Chess.ViewModel.Game
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-
-    /// <summary>
-    /// Represents the view model of a chess game.
-    /// </summary>
-    public class ChessGameVM : ICommandVisitor, INotifyPropertyChanged, IChessGameVM
+    public class ChessGame960VM: ICommandVisitor, INotifyPropertyChanged, IChessGameVM
     {
+    /// <summary>
+    /// Represents the view model of a chess960 game.
+    /// </summary>
+    /// 
         /// <summary>
         /// Represents the rulebook for the game.
         /// </summary>
@@ -54,9 +53,9 @@ namespace Chess.ViewModel.Game
         /// Initializes a new instance of the <see cref="ChessGameVM"/> class.
         /// </summary>
         /// <param name="updateSelector">The disambiguation mechanism if multiple updates are available for a target field.</param>
-        public ChessGameVM(Func<IList<Update>, Update> updateSelector)
+        public ChessGame960VM(Func<IList<Update>, Update> updateSelector)
         {
-            this.rulebook = new StandardRulebook();
+            this.rulebook = new Chess960Rulebook();
             this.Game = this.rulebook.CreateGame();
             this.board = new BoardVM(this.Game.Board);
             this.updateSelector = updateSelector;
