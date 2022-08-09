@@ -106,10 +106,48 @@ namespace Chess.Model.Game
                             this.Column = availableCols[1];
                             break;
                         case 7:
+                            this.Column = availableCols[2];
                             break;
                         case 8:
+                            this.Column = availableCols[2];
                             break;
                         case 9:
+                            this.Column = availableCols[3];
+                            break;
+                    }
+                    break;
+                case ("knight2"):
+                    switch (derVal)
+                    {
+                        case 0:
+                            this.Column = availableCols[0];
+                            break;
+                        case 1:
+                            this.Column = availableCols[1];
+                            break;
+                        case 2:
+                            this.Column = availableCols[2];
+                            break;
+                        case 3:
+                            this.Column = availableCols[3];
+                            break;
+                        case 4:
+                            this.Column = availableCols[1];
+                            break;
+                        case 5:
+                            this.Column = availableCols[2];
+                            break;
+                        case 6:
+                            this.Column = availableCols[3];
+                            break;
+                        case 7:
+                            this.Column = availableCols[2];
+                            break;
+                        case 8:
+                            this.Column = availableCols[3];
+                            break;
+                        case 9:
+                            this.Column = availableCols[3];
                             break;
                     }
                     break;
