@@ -68,6 +68,18 @@ namespace Chess.View.Window
         }
 
         /// <summary>
+        /// Event handler that returns to the game selector window.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Additional information about the event.</param>
+        private void ReturnClick(object sender, EventArgs e)
+        {
+            GameSelectorWindow window = new GameSelectorWindow();
+            window.Show();
+            this.Close();
+        }
+
+        /// <summary>
         /// Fires when a chess piece was visually removed from the chess board.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
