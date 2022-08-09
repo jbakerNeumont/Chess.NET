@@ -8,11 +8,12 @@ namespace Chess.Model.Game
 {
     using Chess.Model.Data;
     using System;
+	using System.Collections.Generic;
 
-    /// <summary>
-    /// Represents a position on a chess board.
-    /// </summary>
-    public class Position : IEquatable<Position>
+	/// <summary>
+	/// Represents a position on a chess board.
+	/// </summary>
+	public class Position : IEquatable<Position>
     {
         /// <summary>
         /// Represents the row of the position, where 0 represents the bottom row.
@@ -38,24 +39,89 @@ namespace Chess.Model.Game
             this.Column = column;
         }
 
-        public Position(int row, int spotsLeft, string rulebook)
+        public Position(int row, int derVal, string pieceName, List<int> availableCols)
 		{
-			if (rulebook == "Chess960Rulebook")
+            this.Row = row;
+			switch (pieceName)
 			{
-                var pos = GetRandomPostion(row, spotsLeft);
-                this.Row = pos.Row;
-                this.Column = pos.Column;
-			}
-			else
-			{
-                Validation.InRange(row, 0, 7, nameof(row));
-                Validation.InRange(spotsLeft, 0, 7, nameof(spotsLeft));
-
-                this.Row = row;
-                this.Column = spotsLeft;
+                case ("bishopOdd"):
+					switch (derVal)
+					{
+                        case 0:
+                            this.Column = 1;
+                            break;
+                        case 1:
+                            this.Column = 3;
+                            break;
+                        case 2:
+                            this.Column = 5;
+                            break;
+                        case 3:
+                            this.Column = 7;
+                            break;
+                    }
+                    break;
+                case ("bishopEven"):
+                    switch (derVal)
+                    {
+                        case 0:
+                            this.Column = 0;
+                            break;
+                        case 1:
+                            this.Column = 2;
+                            break;
+                        case 2:
+                            this.Column = 4;
+                            break;
+                        case 3:
+                            this.Column = 6;
+                            break;
+                    }
+                    break;
+                case ("queen"):
+                    this.Column = availableCols[0];
+                    break;
+                case ("knight1"):
+					switch (derVal)
+					{
+                        case 0:
+                            this.Column = availableCols[0];
+                            break;
+                        case 1:
+                            this.Column = availableCols[0];
+                            break;
+                        case 2:
+                            this.Column = availableCols[0];
+                            break;
+                        case 3:
+                            this.Column = availableCols[0];
+                            break;
+                        case 4:
+                            this.Column = availableCols[1];
+                            break;
+                        case 5:
+                            this.Column = availableCols[1];
+                            break;
+                        case 6:
+                            this.Column = availableCols[1];
+                            break;
+                        case 7:
+                            break;
+                        case 8:
+                            break;
+                        case 9:
+                            break;
+                    }
+                    break;
+                case ("rook"):
+                    this.Column = availableCols[0];
+                    break;
+                case ("king"):
+                    this.Column = availableCols[0];
+                    break;
             }
-            
-		}
+
+        }
 
         /// <summary>
         /// Adds an offset to the position.
@@ -122,12 +188,6 @@ namespace Chess.Model.Game
             hashCodeBuilder.Add(this.Row);
             hashCodeBuilder.Add(this.Column);
             return hashCodeBuilder.ToHashCode();
-        }
-        public Position GetRandomPostion(int row, int max)
-        {
-            Random random = new Random();
-            var newPos = new Position(row, random.Next(max - 1));
-            return newPos;
         }
     }
 }

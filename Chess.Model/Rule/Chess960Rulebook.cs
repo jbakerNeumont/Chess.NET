@@ -57,16 +57,34 @@ namespace Chess.Model.Rule
         /// <returns>The newly created chess game.</returns>
         public ChessGame CreateGame()
         {
+            var DerivationValues = GetDerivationValues();
+            var availableCols = new List<int> {0, 1, 2, 3, 4, 5, 6, 7};
             IEnumerable<PlacedPiece> makeBaseLine(int row, Color color)
             {
-                yield return new PlacedPiece(new Position(row, 8, "Chess960Rulebook"), new Rook(color));
-                yield return new PlacedPiece(new Position(row, 7, "Chess960Rulebook"), new Knight(color));
-                yield return new PlacedPiece(new Position(row, 6, "Chess960Rulebook"), new Bishop(color));
-                yield return new PlacedPiece(new Position(row, 5, "Chess960Rulebook"), new Queen(color));
-                yield return new PlacedPiece(new Position(row, 4, "Chess960Rulebook"), new King(color));
-                yield return new PlacedPiece(new Position(row, 3, "Chess960Rulebook"), new Bishop(color));
-                yield return new PlacedPiece(new Position(row, 2, "Chess960Rulebook"), new Knight(color));
-                yield return new PlacedPiece(new Position(row, 1, "Chess960Rulebook"), new Rook(color));
+                var p1 = new Position(row, DerivationValues["b1"], "bishopOdd", availableCols);
+				if (availableCols.Contains(p1.Column)) { availableCols.Remove(p1.Column); }
+                var p2 = new Position(row, DerivationValues["b1"], "bishopEven", availableCols);
+                if (availableCols.Contains(p2.Column)) { availableCols.Remove(p2.Column); }
+                var p3 = new Position(row, DerivationValues["q"], "queen", availableCols);
+                if (availableCols.Contains(p3.Column)) { availableCols.Remove(p3.Column); }
+                var p4 = new Position(row, DerivationValues["n4"], "knight", availableCols);
+                if (availableCols.Contains(p4.Column)) { availableCols.Remove(p4.Column); }
+                var p5 = new Position(row, DerivationValues["n4"], "knight", availableCols);
+                if ( availableCols.Contains(p5.Column)) { availableCols.Remove(p5.Column); }
+                var p6 = new Position(row, 0, "rook", availableCols);
+                if ( availableCols.Contains(p6.Column)) { availableCols.Remove(p6.Column); }
+                var p7 = new Position(row, 0, "king", availableCols);
+                if ( availableCols.Contains(p7.Column)) { availableCols.Remove(p7.Column); }
+                var p8 = new Position(row, 0, "rook", availableCols);
+                if ( availableCols.Contains(p8.Column)) { availableCols.Remove(p8.Column); }
+                yield return new PlacedPiece(p1, new Bishop(color));
+                yield return new PlacedPiece(p2, new Bishop(color));
+                yield return new PlacedPiece(p3, new Queen(color));
+                yield return new PlacedPiece(p4, new Knight(color));
+                yield return new PlacedPiece(p5, new Knight(color));
+                yield return new PlacedPiece(p6, new Rook(color));
+                yield return new PlacedPiece(p7, new King(color));
+                yield return new PlacedPiece(p8, new Rook(color));
             }
 
             IEnumerable<PlacedPiece> makePawns(int row, Color color) =>
@@ -131,6 +149,25 @@ namespace Chess.Model.Rule
 
             return updates.GetOrElse(Enumerable.Empty<Update>());
         }
+
+        public Dictionary<string, int> GetDerivationValues()
+		{
+            Random random = new Random();
+            var result = new Dictionary<string, int>();
+            var n = random.Next(959);
+            result.Add("n", n);
+            var b1 = (n % 4);
+            result.Add("b1", b1);
+            var n2 = (n - b1) / 4;
+            var b2 = (n2 % 4);
+            result.Add("b2", b2);
+            var n3 = (n2 - b2) / 4;
+            var q = (n3 % 6);
+            result.Add("q", q);
+            var n4 = (n3 % 6) / 6;
+            result.Add("n4", n4);
+            return result;
+		}
     }
 }
 

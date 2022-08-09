@@ -24,7 +24,7 @@ namespace Chess.View.Window
         /// Represents the view model of the window.
         /// </summary>
         //private readonly ChessGame960VM game;
-        private readonly ChessGameVM game;
+        private readonly IChessGameVM game;
 
         /// <summary>
         /// Provides the functionality to extract promotions from a sequence of updates.
@@ -39,6 +39,21 @@ namespace Chess.View.Window
             this.InitializeComponent();
             this.game = new ChessGameVM(this.Choose);
             //this.game = new ChessGame960VM(this.Choose);
+            this.promotionSelector = new PromotionSelector();
+            this.DataContext = this.game;
+        }
+        public MainWindow(string vm)
+		{
+            this.InitializeComponent();
+            switch (vm)
+			{
+                case "default":
+                    this.game = new ChessGameVM(this.Choose);
+                    break;
+                case "960VM":
+                    this.game = new ChessGame960VM(this.Choose);
+                    break;
+			}
             this.promotionSelector = new PromotionSelector();
             this.DataContext = this.game;
         }

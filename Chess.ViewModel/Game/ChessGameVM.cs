@@ -18,7 +18,7 @@ namespace Chess.ViewModel.Game
     /// <summary>
     /// Represents the view model of a chess game.
     /// </summary>
-    public class ChessGameVM : ICommandVisitor, INotifyPropertyChanged
+    public class ChessGameVM : ICommandVisitor, INotifyPropertyChanged, IChessGameVM
     {
         /// <summary>
         /// Represents the rulebook for the game.

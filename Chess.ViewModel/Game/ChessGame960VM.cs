@@ -13,7 +13,7 @@ namespace Chess.ViewModel.Game
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    public class ChessGame960VM: ICommandVisitor, INotifyPropertyChanged
+    public class ChessGame960VM: ICommandVisitor, INotifyPropertyChanged, IChessGameVM
     {
     /// <summary>
     /// Represents the view model of a chess960 game.
