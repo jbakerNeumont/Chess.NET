@@ -38,6 +38,11 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
+                <MenuItem Header="Return" Click="ReturnClick">
+                    <MenuItem.Icon>
+                        <icon:UndoIcon />
+                    </MenuItem.Icon>
+                </MenuItem>
                 <MenuItem Header="Exit" Click="ExitClick">
                     <MenuItem.Icon>
                         <icon:ExitIcon />
