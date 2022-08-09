@@ -38,6 +38,25 @@ namespace Chess.Model.Game
             this.Column = column;
         }
 
+        public Position(int row, int spotsLeft, string rulebook)
+		{
+			if (rulebook == "Chess960Rulebook")
+			{
+                var pos = GetRandomPostion(row, spotsLeft);
+                this.Row = pos.Row;
+                this.Column = pos.Column;
+			}
+			else
+			{
+                Validation.InRange(row, 0, 7, nameof(row));
+                Validation.InRange(spotsLeft, 0, 7, nameof(spotsLeft));
+
+                this.Row = row;
+                this.Column = spotsLeft;
+            }
+            
+		}
+
         /// <summary>
         /// Adds an offset to the position.
         /// </summary>
@@ -103,6 +122,12 @@ namespace Chess.Model.Game
             hashCodeBuilder.Add(this.Row);
             hashCodeBuilder.Add(this.Column);
             return hashCodeBuilder.ToHashCode();
+        }
+        public Position GetRandomPostion(int row, int max)
+        {
+            Random random = new Random();
+            var newPos = new Position(row, random.Next(max - 1));
+            return newPos;
         }
     }
 }
