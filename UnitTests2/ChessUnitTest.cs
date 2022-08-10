@@ -9,7 +9,7 @@ using System.Windows;
 namespace UnitTests2
 {
     [TestClass]
-    public class UnitTest1
+    public class ChessUnitTest
     {
        
 
