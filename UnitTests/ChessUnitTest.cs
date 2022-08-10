@@ -6,19 +6,11 @@ using Chess.ViewModel.Game;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows;
 
-namespace UnitTests2
+namespace UnitTests
 {
     [TestClass]
-<<<<<<<< HEAD:UnitTests/ChessUnitTests.cs
-    public class ChessUnitTests
-========
-    public class ChessUnitTest
->>>>>>>> Test:UnitTests/ChessUnitTest.cs
+public class ChessUnitTests
     {
-       
-
-
-
 
         
         [TestMethod]
