@@ -112,6 +112,8 @@ namespace Chess.Model.Game
             return this.GetPiece(position).Guard(p => p.Color == color);
         }
 
+       
+
         /// <summary>
         /// Gets a chess piece at a specific position of the chess board.
         /// </summary>
@@ -134,6 +136,7 @@ namespace Chess.Model.Game
         {
             return this.GetPiece(new Position(row, column), color);
         }
+
 
         /// <summary>
         /// Gets all chess pieces of a given color that are currently on the chess board.

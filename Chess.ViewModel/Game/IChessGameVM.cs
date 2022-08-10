@@ -14,6 +14,8 @@ namespace Chess.ViewModel.Game
 		public event PropertyChangedEventHandler PropertyChanged;
 		public BoardVM Board { get; }
 
+		public ChessGame Game { get; }
+
 		public Status Status { get; }
 		public GenericCommand NewCommand { get; }
 		public GenericCommand UndoCommand { get; }

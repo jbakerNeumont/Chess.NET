@@ -76,6 +76,28 @@ namespace Chess.ViewModel.Game
                 )
             );
         }
+        public ChessGameVM()
+        {
+            this.rulebook = new StandardRulebook();
+            this.Game = this.rulebook.CreateGame();
+            this.board = new BoardVM(this.Game.Board);
+            this.updateSelector = updateSelector;
+            this.negator = new CommandNegator();
+
+            this.undoCommand = new GenericCommand
+            (
+                () => this.Game.LastUpdate.HasValue,
+                () => this.Game.LastUpdate.Do
+                (
+                    e =>
+                    {
+                        this.Game = e.Game;
+                        this.Board.ClearUpdates();
+                        e.Command.Accept(this.negator).Accept(this);
+                    }
+                )
+            );
+        }
 
         /// <summary>
         /// Occurs when a property value changes.
@@ -139,7 +161,7 @@ namespace Chess.ViewModel.Game
         /// <summary>
         /// Gets or sets the current chess game state.
         /// </summary>
-        private ChessGame Game
+        public ChessGame Game
         {
             get
             {
