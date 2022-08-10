@@ -14,6 +14,7 @@ namespace Chess.Model.Rule
 	using System;
 	using System.Collections.Generic;
     using System.Collections.Immutable;
+    using System.Diagnostics;
     using System.Linq;
 
     /// <summary>
@@ -157,6 +158,7 @@ namespace Chess.Model.Rule
             //put 518 as n for normal setup
             //var n = 518;
             var n = random.Next(959);
+            Debug.Write($"Generated Starting Position: {n}");
             result.Add("n", n);
             var b1 = (n % 4);
             result.Add("b1", b1);
